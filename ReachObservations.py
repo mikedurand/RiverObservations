@@ -6,16 +6,17 @@ Created on Wed Jan 13 23:49:40 2021
 @author: mtd
 """
 
-class ReachObservations:
+from numpy import array,diff,ones,reshape,empty    
+from Domain import Domain
+
+class ReachObservations:    
+        
     def __init__(self):
-        self.D=Domain()
-      
-    
+        # from numpy import array,diff,ones,reshape,empty    
+        self.D=Domain()            
     
     def ReadObs(self,fname):
-        # Read observation file in MetroMan text format
-        
-        from numpy import array,diff,ones,reshape,empty
+        # Read observation file in MetroMan text format        
     
         fid=open(fname,"r")
         infile=fid.readlines()
@@ -61,20 +62,10 @@ class ReachObservations:
         #%%
         fid.close()   
     
-    def GetVectorObs(self):
-        
-        from numpy import reshape
+    def GetVectorObs(self):    
         
         #%% create resahepd versions of observations
         self.hv=reshape(self.h, (self.D.nR*self.D.nt,1) )
         self.Sv=reshape(self.S, (self.D.nR*self.D.nt,1) )
         self.wv=reshape(self.w, (self.D.nR*self.D.nt,1) )
 
-class Domain:
-    def __init__(self):
-        self.nR=[] #number of reaches
-        self.xkm=[] #reach midpoint distance downstream [m]
-        self.L=[]  #reach lengths, [m]
-        self.nt=[] #number of overpasses
-        self.t=[] #time, [days]
-        self.dt=[] #time delta between successive overpasses, [seconds]
