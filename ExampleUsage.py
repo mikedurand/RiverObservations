@@ -7,7 +7,10 @@ Created on Thu Jan 14 00:45:09 2021
 """
 
 from ReachObservations import ReachObservations
+from RiverIO import RiverIO
+from Domain import Domain
 
-obs=ReachObservations()
-obs.ReadObs('SWOTobs.txt')
-obs.GetVectorObs()
+IO=RiverIO('MetroManTxt','SWOTobs.txt')
+D=Domain(IO.data)
+
+obs=ReachObservations(D,IO.data)
